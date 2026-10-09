@@ -1,7 +1,10 @@
-   numpy>=1.22
-   pandas
-   scikit-learn
-   scipy
-   torch
-   xgboost
-   matplotlib
+numpy>=1.22
+pandas>=2.0
+scikit-learn>=1.3
+scipy>=1.10
+torch>=2.0
+xgboost>=2.0
+matplotlib
+fastapi
+uvicorn
+requests
