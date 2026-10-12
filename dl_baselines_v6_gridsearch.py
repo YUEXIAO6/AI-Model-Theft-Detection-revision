@@ -62,7 +62,7 @@ def main():
     
     df_raw = load_and_prepare_df(cfg)
     
-    # 1. 严格对齐 RF 的哈希与实体隔离逻辑
+ 
     original_keys = df_raw['api_key'].unique()
     atk_keys_original = df_raw[df_raw['label'].str.lower() == 'attack']['api_key'].unique()
     key_mapping = {k: hash_api_key(k) for k in original_keys}
@@ -80,7 +80,7 @@ def main():
     hashed_atk_keys = [k for k in all_hashed_keys if k in atk_keys_hashed]
     hashed_norm_keys = [k for k in all_hashed_keys if k not in atk_keys_hashed]
 
-    # 70% Train, 10% Val, 20% Test (严格 Entity-Disjoint)
+  
     train_atk, test_val_atk = train_test_split(hashed_atk_keys, test_size=0.3, random_state=42)
     val_atk, test_atk = train_test_split(test_val_atk, test_size=0.66, random_state=42)
     train_norm, test_val_norm = train_test_split(hashed_norm_keys, test_size=0.3, random_state=42)
@@ -94,7 +94,7 @@ def main():
     val = windows_df.index[windows_df[cfg.group_col].isin(val_keys)].to_numpy()
     te = windows_df.index[windows_df[cfg.group_col].isin(test_keys)].to_numpy()
 
-    # 2. 定义 Grid Search 空间 (与论文完全一致)
+  
     grid_space = {
         "hidden_dim": [32, 64, 128],
         "num_layers": [1, 2],
@@ -122,9 +122,9 @@ def main():
         best_lookback = 20
         best_thr = 0.5
 
-        # 遍历超参数
+       
         for hd, nl, dp, lb in itertools.product(grid_space["hidden_dim"], grid_space["num_layers"], grid_space["dropout"], grid_space["lookback"]):
-            if nl == 1 and dp != 0.0: continue # 单层 GRU 不支持 dropout，跳过重复计算
+            if nl == 1 and dp != 0.0: continue
 
             X_seq = create_sequences_entity_aware(X_raw, windows_df, lookback=lb, group_col=cfg.group_col)
             
@@ -142,7 +142,7 @@ def main():
             loader = DataLoader(TensorDataset(X_tr_t, y_tr_t), batch_size=64, shuffle=True)
 
             model.train()
-            for _ in range(15): # 固定 15 epochs
+            for _ in range(15):
                 for bx, by in loader:
                     optimizer.zero_grad()
                     loss = criterion(model(bx), by)
@@ -153,7 +153,7 @@ def main():
             with torch.no_grad():
                 p_val = torch.sigmoid(model(X_val_t)).cpu().numpy()
                 
-                # 在验证集的正常实体上寻找阈值
+             
                 neg_mask_val = (y_val_t == 0) & (~is_atk_all[val])
                 if neg_mask_val.sum() > 0:
                     try: thr = float(np.quantile(p_val[neg_mask_val], 1 - TARGET_FPR, method="higher")) + 1e-6
@@ -174,7 +174,7 @@ def main():
 
         print(f"[*] Best Config for {feat_name}: {best_config} (Val TPR: {best_val_tpr*100:.1f}%)")
 
-        # 3. 使用最佳配置在测试集上评估
+       
         X_seq_best = create_sequences_entity_aware(X_raw, windows_df, lookback=best_lookback, group_col=cfg.group_col)
         X_te_t = torch.tensor(X_seq_best[te], dtype=torch.float32)
         y_te_t = y_all[te]

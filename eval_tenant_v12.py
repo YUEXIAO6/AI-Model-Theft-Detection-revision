@@ -1,4 +1,4 @@
-# eval_tenant_v12.py —— S4/S6 作为 zero-day 留出，其余协议与 eval_unified_v8 完全一致
+
 import argparse
 from common_v8 import *
 from credit_data_v8 import prepare_credit

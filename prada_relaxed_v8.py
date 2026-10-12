@@ -1,12 +1,10 @@
-# prada_relaxed_v8.py —— PRADA 放宽变体：所有 d_min 无条件加入 D（去掉 mean-std 门控）。
-# 归一化 / Shapiro-Wilk / 窗口取分 / 两套阈值 / 诊断输出 与 prada_baseline_v8.py 完全一致，
-# 用于排除“PRADA 失效仅因 D 集合不增长这一实现细节”的质疑。
+
 import argparse, warnings
 import numpy as np, pandas as pd
 from scipy.stats import shapiro
 from credit_data_v8 import prepare_credit
 from common_v8 import *
-from prada_baseline_v8 import window_scores, diag_state   # 只复用函数，main 有 __name__ 保护
+from prada_baseline_v8 import window_scores, diag_state  
 
 COLS = list(PATTERNS_ALL) + ["Macro", "WinFPR", "EntFPR", "EntFPR3", "AlertHr"]
 
@@ -22,7 +20,7 @@ def prada_scores_relaxed(q, ref_keys, min_d, cap=5000):
         sc = np.zeros(len(g))
         for i, x in enumerate(X):
             if P:
-                D.append(float(np.min(np.linalg.norm(np.asarray(P) - x, axis=1))))   # 【唯一改动】无条件入集
+                D.append(float(np.min(np.linalg.norm(np.asarray(P) - x, axis=1))))   
                 if len(D) >= min_d:
                     arr = np.asarray(D[-cap:])
                     if arr.std() < 1e-12: W_last = 0.0

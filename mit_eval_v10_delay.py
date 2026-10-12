@@ -1,7 +1,7 @@
-# mit_eval_v10_delay.py —— 响应策略：零延迟 / 1 窗口 / 2 窗口因果延迟
+# mit_eval_v10_delay.py 
 import argparse, zlib
 import numpy as np, pandas as pd
-import common_v10                                   # 必须第一个导入
+import common_v10                                   
 from common_v8 import *
 from spp_experiments_v5 import ModelConfig, train_rf, select_feature_columns, build_spp_context_features
 from credit_data_v8 import prepare_credit
@@ -9,7 +9,7 @@ from mit_state_machine_v2 import simulate_entity_policy_v2
 from mit_eval_v8 import CONFIGS, SPP, target_model, surrogate_mse, admitted, first_action_queries
 
 def shift_policy(pol, d):
-    """窗口 i 的实际状态 = 窗口 i-d 的决策；前 d 个窗口放行"""
+   
     if d == 0: return pol
     return [(t, "normal", 1.0) if i < d else (t, pol[i - d][1], pol[i - d][2])
             for i, (t, st, ad) in enumerate(pol)]

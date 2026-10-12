@@ -1,5 +1,4 @@
 # dl_baselines_v8_multiseed.py
-# [v8-fix] COLS 增加 EntFPR3
 import argparse
 import numpy as np, torch, torch.nn as nn
 from torch.utils.data import DataLoader, TensorDataset

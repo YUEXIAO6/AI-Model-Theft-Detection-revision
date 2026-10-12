@@ -1,6 +1,5 @@
 # make_tenant_log_v12.py
-# --t N            : 每个攻击操作者控制 N 个租户（0 = 不聚合，即 key 级）
-# --group_trials M : 把短命良性 trial key 归入 M 个企业租户（对照：良性租户也有多个 key）
+
 import re, zlib, argparse
 import pandas as pd
 ap = argparse.ArgumentParser()

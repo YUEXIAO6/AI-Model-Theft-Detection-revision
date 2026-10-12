@@ -1,5 +1,4 @@
-# mit_benign_by_kind_v8.py —— 良性实体被节流/审查的按类型拆分（norm / batch / monitor）
-# 不修改任何旧文件。切分、阈值、状态机配置与 mit_eval_v8.py 完全一致，数字可直接对照。
+
 import argparse
 import numpy as np, pandas as pd
 from spp_experiments_v5 import SPPConfig, ModelConfig, train_rf, select_feature_columns, build_spp_context_features
@@ -20,11 +19,11 @@ def main():
     y = w["y_binary"].to_numpy(int); is_atk = w["is_atk"].to_numpy()
     cols = select_feature_columns(w, "ours_all"); Xb = w[cols].to_numpy(float)
 
-    # 跨种子池化累计（batch/monitor 每种子仅 2 个测试实体，逐种子求均值会剧烈跳变）
+
     ent    = {c: {k: {"n": 0, "thr": 0, "rev": 0} for k in BENIGN_KINDS} for c in CONFIGS}
     admit  = {c: {k: [] for k in BENIGN_KINDS} for c in CONFIGS}
-    win    = {k: {"n": 0, "fp": 0} for k in BENIGN_KINDS}     # 窗口级 FPR（与状态机无关）
-    alert3 = {k: {"n": 0, "hit": 0} for k in BENIGN_KINDS}    # 30 分钟内 >=3 次告警的实体比例（= EntFPR3 按类型）
+    win    = {k: {"n": 0, "fp": 0} for k in BENIGN_KINDS}     
+    alert3 = {k: {"n": 0, "hit": 0} for k in BENIGN_KINDS}    
 
     for seed in SEEDS[:a.seeds]:
         trk, vak, tek = stratified_entity_split(kind_map, seed)

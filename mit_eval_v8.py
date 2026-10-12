@@ -1,6 +1,4 @@
-# mit_eval_v8.py —— 闭环缓解评估（10 种子）：攻击者代理模型 MSE + 良性用户代价 + 拦截前查询数
-# [v8-fix] (a) MLPRegressor 改为关键字传参（新版 sklearn 第一个位置参数是 loss）；
-#          (b) q_all.timestamp 统一转 epoch 秒，与 win_start 对齐。
+
 import argparse
 import numpy as np, pandas as pd
 from sklearn.neural_network import MLPRegressor
@@ -13,7 +11,7 @@ from mit_state_machine_v2 import MitigationConfigV2, simulate_entity_policy_v2
 
 SPP = SPPConfig(enabled=True, levels=(1, 2), lookback_windows=20, context="past")
 CONFIGS = {
-    "Aggressive (1,3) review=0%":    MitigationConfigV2(1, 3, 1800, 0.2, 0.0),    # = v1 语义
+    "Aggressive (1,3) review=0%":    MitigationConfigV2(1, 3, 1800, 0.2, 0.0),    
     "Aggressive (1,3) review=5%":    MitigationConfigV2(1, 3, 1800, 0.2, 0.05),
     "Conservative (3,5) review=5%":  MitigationConfigV2(3, 5, 1800, 0.2, 0.05),
 }

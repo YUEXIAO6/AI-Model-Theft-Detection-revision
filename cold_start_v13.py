@@ -1,4 +1,4 @@
-# cold_start_v13.py —— 窗口在 key 历史中的序号 vs 误报 / 首次告警位置
+
 import argparse, numpy as np, pandas as pd
 from common_v8 import *
 from credit_data_v8 import prepare_credit
@@ -10,7 +10,7 @@ def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--seeds", type=int, default=5); a = ap.parse_args()
     _, w, kind_map, atk, _, _ = prepare_credit()
     w = w.sort_values(["api_key", "win_start"]).reset_index(drop=True) if False else w
-    # 序号 = 该 key 的第几个活跃窗口（按时间）
+ 
     w["hist_idx"] = w.groupby("api_key")["win_start"].rank(method="first").astype(int) - 1
     is_atk = w["is_atk"].to_numpy(); y = w["y_binary"].to_numpy()
     rows, first_pos = [], {"benign": [], "attacker": []}
@@ -30,12 +30,11 @@ def main():
             if len(f):
                 first_pos["attacker" if g.is_atk.iloc[0] else "benign"].append(int(f.hist_idx.min()))
     r = pd.DataFrame(rows).groupby("bucket", sort=False).agg(n=("n", "sum"), fpr=("fpr", "mean"))
-    print("\n良性正常窗口 FPR 按历史序号分桶:\n", (r.assign(fpr=r.fpr * 100)).round(2).to_string())
+    print( (r.assign(fpr=r.fpr * 100)).round(2).to_string())
     for k, v in first_pos.items():
         v = np.array(v)
         if len(v):
-            print(f"{k}: 首次告警的历史序号 中位数={np.median(v):.0f}, 均值={v.mean():.1f}, "
-                  f"序号<5 的占比={np.mean(v < 5)*100:.0f}%  (n={len(v)})")
+          
     save_json("cold_start_v13.json", {"fpr_by_bucket": r.reset_index().to_dict("records"),
                                       "first_flag_idx": first_pos})
 
