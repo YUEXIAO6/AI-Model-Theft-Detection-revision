@@ -1,9 +1,4 @@
-# eval_singlewindow_v9.py
-# 单窗口 RF vs RF+SPP 消融（回应 R2 对 SPP 作用的质疑）
-# 不修改任何旧文件；协议与 eval_unified_v8.py 完全一致：
-#   哈希 key、分层实体切分 70/10/20、验证集 1% 正常窗口 FPR 校准、种子 42-51
-# 用法: python eval_singlewindow_v9.py --seeds 1    (冒烟)
-#       python eval_singlewindow_v9.py --seeds 10   (正式)
+
 import argparse, time
 import numpy as np
 from spp_experiments_v5 import SPPConfig, ModelConfig, train_rf, build_spp_context_features
@@ -13,7 +8,6 @@ from common_v8 import *
 
 SPP = SPPConfig(enabled=True, levels=(1, 2), lookback_windows=20, context="past")
 
-#        显示名                                特征集       是否拼接SPP
 VARIANTS = [
     ("Single-window RF, 50D",              "ours_all", False),
     ("Single-window RF, 27D (L7-only)",    "l7_only",  False),
@@ -29,7 +23,7 @@ def fit_predict(w, feat, use_spp, tr, va, te, seed):
         Xs, _ = build_spp_context_features(w, cols, "api_key", "win_start", SPP, tr)
         X = np.hstack([Xb, Xs])
     else:
-        X = Xb                                   # 唯一区别：不拼接 SPP 特征
+        X = Xb                                   
     y = w["y_binary"].to_numpy(int); is_atk = w["is_atk"].to_numpy()
     clf = train_rf(X[tr], y[tr], ModelConfig(class_weight="balanced_subsample", random_state=seed))
     thr = calibrate_thr(clf.predict_proba(X[va])[:, 1], (y[va] == 0) & (~is_atk[va]))

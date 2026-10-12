@@ -1,18 +1,15 @@
-# eval_unified_v8.py
-# 用法: python eval_unified_v8.py --seeds 10
-#       python eval_unified_v8.py --seeds 1   (冒烟)
-# [v8-fix] COLS 增加 EntFPR3
+
 import argparse, time
 import numpy as np
 from spp_experiments_v5 import SPPConfig, ModelConfig, train_rf, build_spp_context_features
-from spp_experiments_v5_1 import select_feature_columns          # 含 l7_only，其它透传
+from spp_experiments_v5_1 import select_feature_columns          
 from spp_experiments_v5_timebased import build_spp_context_features_timebased
 from credit_data_v8 import prepare_credit
 from common_v8 import *
 
 SPP = SPPConfig(enabled=True, levels=(1, 2), lookback_windows=20, context="past")
 
-#         显示名                              特征集             分段     模型
+
 VARIANTS = [
     ("IAT/RateOnly + SPP",                 "iat_rate_only",    "count", "rf"),
     ("L7-Projected Baseline23 + SPP [27]", "baseline23",       "count", "rf"),
@@ -51,7 +48,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--csv", default="traffic_logs.csv")
     ap.add_argument("--seeds", type=int, default=10)
-    ap.add_argument("--holdout", default="")     # 例: atk_s4  (只对含 S4 的 csv 有意义)
+    ap.add_argument("--holdout", default="")     
     ap.add_argument("--out", default="unified_v8.json")
     a = ap.parse_args()
     holdout = tuple(x for x in a.holdout.split(",") if x)

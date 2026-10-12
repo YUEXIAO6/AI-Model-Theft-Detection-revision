@@ -1,5 +1,5 @@
-# common_v8.py —— v8 系列共用工具。不修改任何旧文件。
-# [v8-fix] 新增 to_epoch_s()：datetime64 / 字符串 / 数值 统一转 epoch 秒，供 prada / mit_eval 共用
+# common_v8.py
+# [v8-fix] 
 import os, json, hashlib
 import numpy as np
 import pandas as pd
@@ -11,7 +11,7 @@ os.makedirs(OUT_DIR, exist_ok=True)
 
 KINDS = ("norm", "batch", "monitor", "trial",
          "atk_s0", "atk_s1", "atk_s2", "atk_s3", "atk_s4", "atk_s5", "atk_s6")
-# 用 "S0_" 带下划线匹配 type_mode（如 S0_Stealthy），避免误匹配
+
 PATTERNS_ALL = {"S0": "S0_", "S1": "S1_", "S2": "S2_", "S3": "S3_",
                 "S4": "S4_", "S5": "S5_", "S6": "S6_"}
 
@@ -25,8 +25,7 @@ def hash_key(k):
     return "unknown" if pd.isna(k) else hashlib.sha256(str(k).encode()).hexdigest()[:16]
 
 def hash_keys(df_raw, key_col="api_key"):
-    """哈希全部 key。返回 (df, kind_map[hashed->kind], atk_set[hashed])。
-    kind_map 只用于分层切分和分组统计，绝不进入特征。"""
+  
     keys = df_raw[key_col].astype(str).unique()
     mp = {k: hash_key(k) for k in keys}
     kind = {mp[k]: kind_of(k) for k in keys}
@@ -37,11 +36,11 @@ def hash_keys(df_raw, key_col="api_key"):
     return df, kind, atk
 
 def to_epoch_s(s):
-    """[v8-fix] datetime64 / tz-aware / 字符串 / 数值 统一转 epoch 秒（float ndarray）"""
+   
     if pd.api.types.is_datetime64_any_dtype(s):
         return s.astype("int64").to_numpy().astype(float) / 1e9
     num = pd.to_numeric(s, errors="coerce")
-    if num.isna().mean() > 0.5:                       # 大部分不是数值 → 当成时间字符串解析
+    if num.isna().mean() > 0.5:                      
         dt = pd.to_datetime(s, errors="coerce", utc=True)
         return dt.astype("int64").to_numpy().astype(float) / 1e9
     return num.to_numpy(float)
@@ -56,8 +55,7 @@ def _split_group(items, seed):
     return set(items[n_te + n_va:]), set(items[n_te:n_te + n_va]), set(items[:n_te])
 
 def stratified_entity_split(kind_map, seed, holdout_kinds=()):
-    """按实体种类分层 70/10/20，保证每类攻击者都有 key 落入测试集。
-    holdout_kinds 里的种类全部只进测试集（zero-day 策略）。"""
+ 
     tr, va, te = set(), set(), set()
     by_kind = {}
     for k, kd in kind_map.items():
@@ -86,7 +84,7 @@ def dedup_alerts(df, group_col="api_key", cooldown_s=600):
     return n
 
 def ent_fpr_k(d, k=3, window_s=1800, group_col="api_key"):
-    """良性实体中，任意 window_s 秒内出现 >=k 次告警的比例（对齐缓解状态机 review 触发条件）"""
+   
     ben = d[~d["is_atk"].astype(bool)]
     n_ben = ben[group_col].nunique()
     if n_ben == 0:

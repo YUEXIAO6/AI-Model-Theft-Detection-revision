@@ -1,5 +1,4 @@
-# common_v10.py —— 不改 common_v8.py：扩展 S7/S8，输出重定向到 results_v10/
-# 必须在 `from common_v8 import *` 之前 import 本模块
+
 import os
 import common_v8 as c8
 

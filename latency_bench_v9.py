@@ -1,4 +1,4 @@
-# latency_bench_v9.py —— 单核公平延迟基准（不改动 latency_bench_v8.py）
+
 import time, collections, platform, os
 import numpy as np, torch, torch.nn as nn
 from spp_experiments_v5 import (SPPConfig, ModelConfig, train_rf, select_feature_columns,
@@ -15,7 +15,7 @@ def stats(ts):
     a = np.asarray(ts); return {"median_ms": float(np.median(a)), "p95_ms": float(np.percentile(a, 95)), "n": len(a)}
 
 def per_window_ms(fn, X, bs, reps=5):
-    """整批推理耗时 / bs = 每窗口摊销毫秒，取 reps 次中位数"""
+    
     xb = X[:bs]; fn(xb)                      # warmup
     t = []
     for _ in range(reps):
@@ -28,7 +28,7 @@ def main():
            "torch_threads": 1, "rf_n_jobs": 1}
     rng = np.random.RandomState(0)
 
-    # 1) 单窗口特征提取
+   
     df2 = add_window_id(df_raw, win_cfg, cfg)
     groups = list(df2.groupby(["api_key", "win_id"]))
     sel = rng.choice(len(groups), size=min(300, len(groups)), replace=False)
@@ -40,7 +40,7 @@ def main():
         t_feat.append((time.perf_counter() - t0) * 1e3)
     out["feature_extraction_per_window"] = stats(t_feat)
 
-    # 2) 增量 SPP（FIFO K=20）
+ 
     cols = select_feature_columns(w, "ours_all"); Xb = w[cols].to_numpy(float)
     trk, vak, tek = stratified_entity_split(kind_map, 42)
     tr = w.index[w["api_key"].isin(trk)].to_numpy()
@@ -59,7 +59,7 @@ def main():
         if n >= WARM: t_spp.append((time.perf_counter() - t0) * 1e3)
     out["spp_incremental_update"] = stats(t_spp)
 
-    # 3) RF 推理：n_jobs=1（主结果）与 n_jobs=-1（仅用于说明线程开销）
+   
     Xs, _ = build_spp_context_features(w, cols, "api_key", "win_start", SPPConfig(True, LEVELS, K, "past"), tr)
     X = np.hstack([Xb, Xs]); y = w["y_binary"].to_numpy(int)
     clf = train_rf(X[tr], y[tr], ModelConfig(class_weight="balanced_subsample", random_state=42, n_jobs=1))
@@ -75,7 +75,7 @@ def main():
     out["rf_n_jobs_all_per_window_ms"] = {str(b): per_window_ms(rf_fn, Xte, b) for b in BATCHES}
     clf.set_params(n_jobs=1)
 
-    # 4) GRU 推理（hidden 32, lookback 10, 50-D；权重随机，只测推理开销）
+   
     class G(nn.Module):
         def __init__(s, d=50, h=32):
             super().__init__(); s.gru = nn.GRU(d, h, batch_first=True); s.att = nn.Linear(h, 1); s.fc = nn.Linear(h, 1)
@@ -86,7 +86,7 @@ def main():
         gru_fn = lambda xb: g(xb)
         out["gru_per_window_ms"] = {str(b): per_window_ms(gru_fn, xall, b) for b in BATCHES}
 
-    # 汇总
+   
     fe, sp = out["feature_extraction_per_window"]["median_ms"], out["spp_incremental_update"]["median_ms"]
     print("\n== 各阶段（单核，中位数 ms）==")
     print(f"特征提取/窗口   : {fe:.3f}\nSPP 增量更新     : {sp:.3f}")

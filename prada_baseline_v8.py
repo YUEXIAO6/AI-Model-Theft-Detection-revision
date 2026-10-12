@@ -1,12 +1,4 @@
-# prada_baseline_v8.py
-# PRADA (Juuti et al., EuroS&P 2019) 的 L7 日志复现，作为同数据源被动检测基线。
-# 简化说明：(1) 特征为 (age, income) 经训练集正常用户 min-max 归一化；
-#           (2) D 的加入规则 d_min > max(mean(D)-std(D), 0)；
-#           (3) |D| >= min_d 后计算 W；score = 1 - W；窗口得分取窗口结束前最新的 score。
-# 两种判定规则并列报告：
-#   - "1%FPR"  : 与其它方法相同协议，val 正常窗口 99 分位阈值
-#   - "native δ": PRADA 原文做法，δ 取使训练集良性用户全部不被标记的边界（thr = 训练良性 key 最高分）
-# [v8-fix] timestamp 统一转 epoch 秒；第一个 seed 输出按种类的 PRADA 状态诊断与两种阈值。
+
 import argparse, warnings
 import numpy as np, pandas as pd
 from scipy.stats import shapiro
@@ -23,7 +15,7 @@ def prada_scores(q, ref_keys, min_d):
     out, state = {}, {}
     for key, g in q.sort_values("timestamp").groupby("api_key"):
         X = (g[["age", "income"]].to_numpy(float) - lo) / span
-        ts = g["timestamp"].to_numpy(float)          # 已在 main() 里转成 epoch 秒
+        ts = g["timestamp"].to_numpy(float)          
         P, D, W_last = [], [], None
         sc = np.zeros(len(g))
         for i, x in enumerate(X):
@@ -35,7 +27,7 @@ def prada_scores(q, ref_keys, min_d):
                     if dmin > T: D.append(dmin)
                 if len(D) >= min_d:
                     arr = np.asarray(D[-5000:])
-                    if arr.std() < 1e-12: W_last = 0.0          # 完全重复的步长 → 极端非正态
+                    if arr.std() < 1e-12: W_last = 0.0          
                     else:
                         with warnings.catch_warnings():
                             warnings.simplefilter("ignore"); W_last = float(shapiro(arr)[0])
@@ -76,7 +68,7 @@ def main():
     ap.add_argument("--csv", default="traffic_logs.csv")
     ap.add_argument("--seeds", type=int, default=10)
     ap.add_argument("--holdout", default="")
-    ap.add_argument("--min_d", default="10,100")   # PRADA 原文在 ~100 次查询后才判定；10 是宽松版
+    ap.add_argument("--min_d", default="10,100")   
     a = ap.parse_args()
     holdout = tuple(x for x in a.holdout.split(",") if x)
     min_ds = [int(x) for x in a.min_d.split(",")]

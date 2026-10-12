@@ -1,5 +1,4 @@
-# spp_experiments_v5_timebased.py
-# 不修改原文件，只新增一个按物理时间戳切分 segment 的 SPP 特征提取函数
+
 from typing import List, Tuple
 import math
 import numpy as np
@@ -12,17 +11,14 @@ from spp_experiments_v5 import (
 )
 
 def _time_segment_indices(timestamps: np.ndarray, level: int) -> List[Tuple[int, int]]:
-    """
-    按物理时间戳（而非数组下标）把序列切成 2^(level-1) 段。
-    timestamps: 已排序的 win_start 数组（该实体历史窗口的时间戳）
-    """
+ 
     n = len(timestamps)
     segs = 2 ** (level - 1)
     if n <= 0:
         return [(0, 0)]
     t_min, t_max = float(timestamps[0]), float(timestamps[-1])
     if t_max <= t_min:
-        # 时间跨度为0（只有1个点），退化为整体一段
+       
         return [(0, n)] * segs if segs == 1 else [(0, n)] + [(n, n)] * (segs - 1)
 
     bounds = []
@@ -63,7 +59,7 @@ def build_spp_context_features_timebased(windows_df, feature_cols, group_col, ti
                 Xctx, Tctx = Xg[beg_t:end_t, :], Tg[beg_t:end_t]
             parts = []
             for lv in spp_cfg.levels:
-                for (s, e) in _time_segment_indices(Tctx, lv):   # 【核心改动】按时间切分
+                for (s, e) in _time_segment_indices(Tctx, lv):   
                     segX = Xctx[s:e, :]
                     if segX.size == 0:
                         parts.append(np.zeros((3 * d,), dtype=float)); continue
