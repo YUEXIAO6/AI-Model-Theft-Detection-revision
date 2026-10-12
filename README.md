@@ -26,8 +26,16 @@ Run all commands from the repository root. Logs go in the root directory (script
 Reproduction check on Colab (clean environment): the PRADA baseline reproduced exactly; RF+SPP for partition 42 within 1 point; single-window RF within 4 points; per-window latency 36.6 ms vs. 33.6 ms. Different library versions can move single-partition numbers by a few points; the 10-partition means in the paper are the reference. Seeds are 42-51.
 
 ## Data
-`data/traffic_logs.csv` is the main log (275,982 requests). Larger logs are archived at **TODO: Zenodo DOI** and must be placed in the repository root:
-`traffic_logs_v10b.csv` (S5/S9), `traffic_logs_v12.csv` (tenant experiment), `traffic_logs_v7_2.csv` (IP-level), `traffic_logs_drift.csv`, `traffic_logs_insurance.csv`.
+`data/traffic_logs.csv` is the main log (275,982 requests) and
+`server_insurance/traffic_logs_insurance.csv` is the insurance-API log. Both are in this repository.
+
+The four larger logs are attached to the Releases page as `logs.zip`:
+`traffic_logs_v10b.csv` (S5/S9), `traffic_logs_v12.csv` (tenant experiment),
+`traffic_logs_v7_2.csv` (IP-level), `traffic_logs_drift.csv` (concept drift).
+Download it and unzip it in the repository root.
+
+Regenerating a log: start the matching `server_*.py` in one terminal and the matching
+`traffic_generator_*.py` in another, run about 2 hours, stop with Ctrl+C. New logs give slightly different numbers.
 
 Regenerating a log: start the matching `server_*.py` in one terminal and the matching `traffic_generator_*.py` in another, run about 2 hours, stop with Ctrl+C. New logs give slightly different numbers.
 
