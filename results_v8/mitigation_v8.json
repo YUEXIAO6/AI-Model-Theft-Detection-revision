@@ -1,0 +1,398 @@
+{
+  "summary": {
+    "Aggressive (1,3) review=0%": {
+      "BenignEverThrottled": {
+        "mean": 0.52,
+        "std": 0.1307669683062202,
+        "n": 10
+      },
+      "BenignEverReview": {
+        "mean": 0.25,
+        "std": 0.1,
+        "n": 10
+      },
+      "BenignMeanAdmit": {
+        "mean": 0.7615448717948718,
+        "std": 0.09048471657284225,
+        "n": 10
+      },
+      "AtkMeanAdmit": {
+        "mean": 0.010302295955288454,
+        "std": 0.004311320173780226,
+        "n": 10
+      },
+      "AtkNeverMitigated": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "AtkQueriesToFirstAction": {
+        "mean": 6.62,
+        "std": 2.2386603136697625,
+        "n": 10
+      },
+      "AtkMSE_mitigated": {
+        "mean": 0.05942993563886919,
+        "std": 0.008023541188576356,
+        "n": 10
+      }
+    },
+    "Aggressive (1,3) review=5%": {
+      "BenignEverThrottled": {
+        "mean": 0.52,
+        "std": 0.1307669683062202,
+        "n": 10
+      },
+      "BenignEverReview": {
+        "mean": 0.25,
+        "std": 0.1,
+        "n": 10
+      },
+      "BenignMeanAdmit": {
+        "mean": 0.7706201923076923,
+        "std": 0.08635622729832156,
+        "n": 10
+      },
+      "AtkMeanAdmit": {
+        "mean": 0.05903006106015003,
+        "std": 0.004021863566210401,
+        "n": 10
+      },
+      "AtkNeverMitigated": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "AtkQueriesToFirstAction": {
+        "mean": 6.62,
+        "std": 2.2386603136697625,
+        "n": 10
+      },
+      "AtkMSE_mitigated": {
+        "mean": 0.027078298652262967,
+        "std": 0.009664937002493572,
+        "n": 10
+      }
+    },
+    "Conservative (3,5) review=5%": {
+      "BenignEverThrottled": {
+        "mean": 0.25,
+        "std": 0.1,
+        "n": 10
+      },
+      "BenignEverReview": {
+        "mean": 0.16999999999999998,
+        "std": 0.060000000000000005,
+        "n": 10
+      },
+      "BenignMeanAdmit": {
+        "mean": 0.863690705128205,
+        "std": 0.06470704297020709,
+        "n": 10
+      },
+      "AtkMeanAdmit": {
+        "mean": 0.07724487219503653,
+        "std": 0.006013518658679478,
+        "n": 10
+      },
+      "AtkNeverMitigated": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "AtkQueriesToFirstAction": {
+        "mean": 13.440000000000001,
+        "std": 2.394660727535322,
+        "n": 10
+      },
+      "AtkMSE_mitigated": {
+        "mean": 0.023140251034077734,
+        "std": 0.004438639353721425,
+        "n": 10
+      }
+    }
+  },
+  "per_seed": {
+    "Aggressive (1,3) review=0%": [
+      {
+        "BenignEverThrottled": 0.6,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.7434615384615384,
+        "AtkMeanAdmit": 0.013996889580093312,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 8.2,
+        "AtkMSE_mitigated": 0.0609441108215417
+      },
+      {
+        "BenignEverThrottled": 0.55,
+        "BenignEverReview": 0.4,
+        "BenignMeanAdmit": 0.6435256410256409,
+        "AtkMeanAdmit": 0.003110419906687403,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 3.0,
+        "AtkMSE_mitigated": 0.06982592731
+      },
+      {
+        "BenignEverThrottled": 0.4,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8246153846153846,
+        "AtkMeanAdmit": 0.014596273291925463,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 9.0,
+        "AtkMSE_mitigated": 0.049592553437791474
+      },
+      {
+        "BenignEverThrottled": 0.5,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8476923076923077,
+        "AtkMeanAdmit": 0.015838509316770187,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 9.6,
+        "AtkMSE_mitigated": 0.04961594450944136
+      },
+      {
+        "BenignEverThrottled": 0.25,
+        "BenignEverReview": 0.1,
+        "BenignMeanAdmit": 0.9323076923076924,
+        "AtkMeanAdmit": 0.013023255813953489,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 5.2,
+        "AtkMSE_mitigated": 0.058901525147841985
+      },
+      {
+        "BenignEverThrottled": 0.45,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.7694230769230768,
+        "AtkMeanAdmit": 0.011162790697674417,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 7.0,
+        "AtkMSE_mitigated": 0.05908493741457641
+      },
+      {
+        "BenignEverThrottled": 0.45,
+        "BenignEverReview": 0.2,
+        "BenignMeanAdmit": 0.7849358974358974,
+        "AtkMeanAdmit": 0.009907120743034056,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 7.6,
+        "AtkMSE_mitigated": 0.0583221439371969
+      },
+      {
+        "BenignEverThrottled": 0.7,
+        "BenignEverReview": 0.35,
+        "BenignMeanAdmit": 0.6906410256410257,
+        "AtkMeanAdmit": 0.006521739130434783,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 4.8,
+        "AtkMSE_mitigated": 0.06982592731
+      },
+      {
+        "BenignEverThrottled": 0.65,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.7636538461538461,
+        "AtkMeanAdmit": 0.003410852713178295,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 3.4,
+        "AtkMSE_mitigated": 0.06982592731
+      },
+      {
+        "BenignEverThrottled": 0.65,
+        "BenignEverReview": 0.4,
+        "BenignMeanAdmit": 0.6151923076923077,
+        "AtkMeanAdmit": 0.011455108359133128,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 8.4,
+        "AtkMSE_mitigated": 0.04836035919030203
+      }
+    ],
+    "Aggressive (1,3) review=5%": [
+      {
+        "BenignEverThrottled": 0.6,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.7524679487179486,
+        "AtkMeanAdmit": 0.06267496111975117,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 8.2,
+        "AtkMSE_mitigated": 0.01834247872625693
+      },
+      {
+        "BenignEverThrottled": 0.55,
+        "BenignEverReview": 0.4,
+        "BenignMeanAdmit": 0.6587980769230769,
+        "AtkMeanAdmit": 0.05233281493001555,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 3.0,
+        "AtkMSE_mitigated": 0.04978465024404546
+      },
+      {
+        "BenignEverThrottled": 0.4,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8317948717948718,
+        "AtkMeanAdmit": 0.06312111801242237,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 9.0,
+        "AtkMSE_mitigated": 0.02622122606382376
+      },
+      {
+        "BenignEverThrottled": 0.5,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8516025641025641,
+        "AtkMeanAdmit": 0.0640527950310559,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 9.6,
+        "AtkMSE_mitigated": 0.02983948826821898
+      },
+      {
+        "BenignEverThrottled": 0.25,
+        "BenignEverReview": 0.1,
+        "BenignMeanAdmit": 0.9344230769230769,
+        "AtkMeanAdmit": 0.061317829457364345,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 5.2,
+        "AtkMSE_mitigated": 0.019111588914103583
+      },
+      {
+        "BenignEverThrottled": 0.45,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.7782852564102564,
+        "AtkMeanAdmit": 0.059922480620155046,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 7.0,
+        "AtkMSE_mitigated": 0.0352545938485657
+      },
+      {
+        "BenignEverThrottled": 0.45,
+        "BenignEverReview": 0.2,
+        "BenignMeanAdmit": 0.7929967948717948,
+        "AtkMeanAdmit": 0.05866873065015479,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 7.6,
+        "AtkMSE_mitigated": 0.0285004550436738
+      },
+      {
+        "BenignEverThrottled": 0.7,
+        "BenignEverReview": 0.35,
+        "BenignMeanAdmit": 0.7027243589743589,
+        "AtkMeanAdmit": 0.05551242236024845,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 4.8,
+        "AtkMSE_mitigated": 0.017626883697175955
+      },
+      {
+        "BenignEverThrottled": 0.65,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.7719070512820513,
+        "AtkMeanAdmit": 0.05255813953488371,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 3.4,
+        "AtkMSE_mitigated": 0.02936527925293437
+      },
+      {
+        "BenignEverThrottled": 0.65,
+        "BenignEverReview": 0.4,
+        "BenignMeanAdmit": 0.631201923076923,
+        "AtkMeanAdmit": 0.06013931888544892,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 8.4,
+        "AtkMSE_mitigated": 0.016736342463831176
+      }
+    ],
+    "Conservative (3,5) review=5%": [
+      {
+        "BenignEverThrottled": 0.25,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.9074358974358974,
+        "AtkMeanAdmit": 0.078149300155521,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 15.0,
+        "AtkMSE_mitigated": 0.015127444761676939
+      },
+      {
+        "BenignEverThrottled": 0.4,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.845625,
+        "AtkMeanAdmit": 0.06850699844479004,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 8.6,
+        "AtkMSE_mitigated": 0.02599398457700163
+      },
+      {
+        "BenignEverThrottled": 0.15,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8640224358974359,
+        "AtkMeanAdmit": 0.08035714285714286,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 14.4,
+        "AtkMSE_mitigated": 0.018367462714668246
+      },
+      {
+        "BenignEverThrottled": 0.15,
+        "BenignEverReview": 0.1,
+        "BenignMeanAdmit": 0.9544391025641026,
+        "AtkMeanAdmit": 0.08742236024844723,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 16.4,
+        "AtkMSE_mitigated": 0.02770769654318645
+      },
+      {
+        "BenignEverThrottled": 0.1,
+        "BenignEverReview": 0.1,
+        "BenignMeanAdmit": 0.9600480769230769,
+        "AtkMeanAdmit": 0.08658914728682172,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 16.0,
+        "AtkMSE_mitigated": 0.02578332813632102
+      },
+      {
+        "BenignEverThrottled": 0.25,
+        "BenignEverReview": 0.25,
+        "BenignMeanAdmit": 0.8323878205128206,
+        "AtkMeanAdmit": 0.07612403100775195,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 13.4,
+        "AtkMSE_mitigated": 0.02856151670131359
+      },
+      {
+        "BenignEverThrottled": 0.2,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8542948717948716,
+        "AtkMeanAdmit": 0.07585139318885449,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 14.4,
+        "AtkMSE_mitigated": 0.02731314352143823
+      },
+      {
+        "BenignEverThrottled": 0.35,
+        "BenignEverReview": 0.2,
+        "BenignMeanAdmit": 0.8278365384615386,
+        "AtkMeanAdmit": 0.07173913043478261,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 11.4,
+        "AtkMSE_mitigated": 0.02278690415990669
+      },
+      {
+        "BenignEverThrottled": 0.25,
+        "BenignEverReview": 0.15,
+        "BenignMeanAdmit": 0.8676282051282052,
+        "AtkMeanAdmit": 0.07015503875968992,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 10.4,
+        "AtkMSE_mitigated": 0.018168842913950455
+      },
+      {
+        "BenignEverThrottled": 0.4,
+        "BenignEverReview": 0.3,
+        "BenignMeanAdmit": 0.7231891025641025,
+        "AtkMeanAdmit": 0.07755417956656348,
+        "AtkNeverMitigated": 0.0,
+        "AtkQueriesToFirstAction": 14.4,
+        "AtkMSE_mitigated": 0.021592186311314047
+      }
+    ]
+  },
+  "no_mitigation_mse": {
+    "mean": 0.01403631627199569,
+    "std": 0.002108661598677743
+  },
+  "baseline_mse": 0.06982592731
+}

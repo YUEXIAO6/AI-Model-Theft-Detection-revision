@@ -1,0 +1,831 @@
+{
+  "summary": {
+    "PRADA |D|>=10 (1%FPR)": {
+      "S0": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S1": {
+        "mean": 0.28193548387096773,
+        "std": 0.43148751734838336,
+        "n": 10
+      },
+      "S2": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S3": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S4": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S5": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S6": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "Macro": {
+        "mean": 0.07048387096774193,
+        "std": 0.10787187933709584,
+        "n": 10
+      },
+      "WinFPR": {
+        "mean": 0.028557692307692305,
+        "std": 0.03832680728686821,
+        "n": 10
+      },
+      "EntFPR": {
+        "mean": 0.030000000000000006,
+        "std": 0.04,
+        "n": 10
+      },
+      "EntFPR3": {
+        "mean": 0.030000000000000006,
+        "std": 0.04,
+        "n": 10
+      },
+      "AlertHr": {
+        "mean": 3.483870967741935,
+        "std": 4.64516129032258,
+        "n": 10
+      }
+    },
+    "PRADA |D|>=10 (native \u03b4)": {
+      "S0": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S1": {
+        "mean": 0.2703225806451613,
+        "std": 0.4138944754845473,
+        "n": 10
+      },
+      "S2": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S3": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S4": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S5": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S6": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "Macro": {
+        "mean": 0.06758064516129032,
+        "std": 0.10347361887113682,
+        "n": 10
+      },
+      "WinFPR": {
+        "mean": 0.00951923076923077,
+        "std": 0.028557692307692308,
+        "n": 10
+      },
+      "EntFPR": {
+        "mean": 0.01,
+        "std": 0.030000000000000002,
+        "n": 10
+      },
+      "EntFPR3": {
+        "mean": 0.01,
+        "std": 0.030000000000000002,
+        "n": 10
+      },
+      "AlertHr": {
+        "mean": 1.161290322580645,
+        "std": 3.4838709677419346,
+        "n": 10
+      }
+    },
+    "PRADA |D|>=100 (1%FPR)": {
+      "S0": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S2": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S3": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S4": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S5": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S6": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "Macro": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "WinFPR": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "EntFPR": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "EntFPR3": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "AlertHr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      }
+    },
+    "PRADA |D|>=100 (native \u03b4)": {
+      "S0": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S1": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S2": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S3": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "S4": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S5": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "S6": {
+        "mean": NaN,
+        "std": NaN,
+        "n": 0
+      },
+      "Macro": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "WinFPR": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "EntFPR": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "EntFPR3": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      },
+      "AlertHr": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 10
+      }
+    }
+  },
+  "per_seed": {
+    "PRADA |D|>=10 (1%FPR)": [
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.9741935483870968,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.2435483870967742,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.04807692307692308,
+        "EntFPR": 0.05,
+        "EntFPR3": 0.05,
+        "AlertHr": 5.806451612903225
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.04519230769230769,
+        "EntFPR": 0.05,
+        "EntFPR3": 0.05,
+        "AlertHr": 5.806451612903225
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.9741935483870968,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.2435483870967742,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.09615384615384616,
+        "EntFPR": 0.1,
+        "EntFPR3": 0.1,
+        "AlertHr": 11.61290322580645
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.09615384615384616,
+        "EntFPR": 0.1,
+        "EntFPR3": 0.1,
+        "AlertHr": 11.61290322580645
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.8709677419354839,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.21774193548387097,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      }
+    ],
+    "PRADA |D|>=10 (native \u03b4)": [
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.864516129032258,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.2161290322580645,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.864516129032258,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.2161290322580645,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.9741935483870968,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.2435483870967742,
+        "WinFPR": 0.09519230769230769,
+        "EntFPR": 0.1,
+        "EntFPR3": 0.1,
+        "AlertHr": 11.61290322580645
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      }
+    ],
+    "PRADA |D|>=100 (1%FPR)": [
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      }
+    ],
+    "PRADA |D|>=100 (native \u03b4)": [
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      },
+      {
+        "S0": 0.0,
+        "S1": 0.0,
+        "S2": 0.0,
+        "S3": 0.0,
+        "S4": NaN,
+        "S5": NaN,
+        "S6": NaN,
+        "Macro": 0.0,
+        "WinFPR": 0.0,
+        "EntFPR": 0.0,
+        "EntFPR3": 0.0,
+        "AlertHr": 0.0
+      }
+    ]
+  },
+  "holdout": [],
+  "min_d": [
+    10,
+    100
+  ],
+  "rules": {
+    "1%FPR": "val normal-window 99th percentile (same protocol as other methods)",
+    "native \u03b4": "PRADA-style: threshold = max score of any training benign key"
+  }
+}
