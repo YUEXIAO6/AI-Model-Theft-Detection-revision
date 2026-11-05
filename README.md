@@ -10,6 +10,7 @@ Code for the first-round submission is kept at `AI-Model-Theft-Detection-v1`.
 - **Simulators**: `server_*.py` (API gateway with logging middleware) and `traffic_generator_*.py` (benign clients and attack strategies S0-S6, S9).
 - **Feature pipeline**: `spp_experiments_v5*.py` (50-D window features, Spatial Pyramid Pooling), `window_relabel_credit_only.py` (credit-only window labels), `common_v8.py` (hashed keys, stratified entity-disjoint split, 1% normal-FPR calibration).
 - **Evaluation scripts**: one script per table or section (map below).
+- **HuggingFace Validation**: `hf_common.py`, `hf_sim_reference.py`, `hf_collect_traces.py`, and `hf_fidelity_analysis.py` (scripts for collecting live HuggingFace text-classification traces and reproducing Table VI fidelity analysis[cite: 1, 10]).
 - **Results**: `results_v8/`, `results_v10/`, `results_v11/` (JSON, mean/std over partitions).
 
 ## Setup
@@ -48,7 +49,7 @@ Regenerating a log: start the matching `server_*.py` in one terminal and the mat
 |---|---|---|
 | Table V (dataset statistics) / Sec. VI-A.1 (request-level attack share) | python attack_share_v9.py | stdout |
 | Fig. 3 (attack share over time) | python export_share_v12.py | stdout (JSON, 5-min bins) |
-| Table VI (HuggingFace fidelity) | <见下文第 5 节> | <见下文第 5 节> |
+| Table VI (HuggingFace fidelity)[cite: 1, 10] | `set HF_TOKEN=<your_token>` (cmd), then `python hf_collect_traces.py --steady_mean 4.33` and `python hf_fidelity_analysis.py --iat_scope all` | stdout (prints KS_boot, Cohen's d, OVL metrics & LaTeX rows) and saves `results_v8/hf_fidelity.json`[cite: 1, 10] |
 | Table VII (GRU hyperparameters, grid search) | python dl_baselines_v6_gridsearch.py | stdout |
 | Table VIII (RF, XGBoost, L7-only, time-based) | python eval_unified_v8.py --seeds 10 | results_v8/unified_v8.json |
 | Table VIII (GRU) | python dl_baselines_v8_multiseed.py --seeds 10 | results_v8/gru_multiseed_v8.json |
