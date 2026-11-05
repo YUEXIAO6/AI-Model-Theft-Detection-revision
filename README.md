@@ -20,22 +20,25 @@ Run all commands from the repository root. Logs go in the root directory (script
 
 | Environment | Python | numpy | pandas | scikit-learn | scipy | torch | xgboost | CPU |
 |---|---|---|---|---|---|---|---|---|
-| Authors' workstation (all paper results) | 3.10 | TODO | TODO | TODO | TODO | TODO | TODO | TODO |
+| Authors' workstation (all paper results) | 3.10.19 | 2.2.6 | 2.3.3 | 1.7.2 | 1.15.3 | 2.10.0 (CPU) | 3.2.0 | Intel Core i7-1165G7 @ 2.80 GHz (4 cores / 8 threads) |
 | Google Colab (reproduction check, Oct 2026) | 3.13 | 2.1.3 | 2.2.3 | 1.6.1 | 1.16.3 | 2.11.0 (CPU) | 3.4.1 | Intel Xeon @ 2.20 GHz, 2 vCPU |
 
-Reproduction check on Colab (clean environment): the PRADA baseline reproduced exactly; RF+SPP for partition 42 within 1 point; single-window RF within 4 points; per-window latency 36.6 ms vs. 33.6 ms. Different library versions can move single-partition numbers by a few points; the 10-partition means in the paper are the reference. Seeds are 42-51.
+Reproduction check on Colab (clean environment): the PRADA baseline reproduced exactly; RF+SPP for partition 42 within 1 point; single-window RF within 4 points; per-window latency 33.6 ms on the authors’ workstation (single core, Core i7-1165G7) vs. 36.6 ms on Colab (2 vCPU). Different library versions can move single-partition numbers by a few points; the 10-partition means in the paper are the reference. Seeds are 42-51.
 
 ## Data
-`data/traffic_logs.csv` is the main log (275,982 requests) and
-`server_insurance/traffic_logs_insurance.csv` is the insurance-API log. Both are in this repository.
 
-The four larger logs are attached to the Releases page as `logs.zip`:
-`traffic_logs_v10b.csv` (S5/S9), `traffic_logs_v12.csv` (tenant experiment),
-`traffic_logs_v7_2.csv` (IP-level), `traffic_logs_drift.csv` (concept drift).
-Download it and unzip it in the repository root.
+The main log (275,982 requests, about 2.6 h of simulated traffic) is stored as `data/traffic_logs.csv`. The scripts read `traffic_logs*.csv` from the working directory, so copy it to the repository root before running anything:
 
-Regenerating a log: start the matching `server_*.py` in one terminal and the matching
-`traffic_generator_*.py` in another, run about 2 hours, stop with Ctrl+C. New logs give slightly different numbers.
+    copy data\traffic_logs.csv .          (Linux/macOS: cp data/traffic_logs.csv .)
+
+The insurance-API log is `server_insurance/traffic_logs_insurance.csv`; the insurance script is run from inside that folder.
+
+The larger logs are attached to the Releases page as `logs.zip`. Download it and unzip it in the repository root:
+
+- `traffic_logs_v10b.csv` (S5/S9 experiment, about 14 h)
+- `traffic_logs_v12.csv` (tenant experiment)
+- `traffic_logs_v7_2.csv` (IP-level experiment)
+- `traffic_logs_drift.csv` (concept drift)
 
 Regenerating a log: start the matching `server_*.py` in one terminal and the matching `traffic_generator_*.py` in another, run about 2 hours, stop with Ctrl+C. New logs give slightly different numbers.
 
@@ -43,26 +46,31 @@ Regenerating a log: start the matching `server_*.py` in one terminal and the mat
 
 | Paper item | Command | Output |
 |---|---|---|
-| Table VII (RF, XGBoost, L7-only, time-based) | `python eval_unified_v8.py --seeds 10` | `results_v8/unified_v8.json` |
-| Table VII (GRU) | `python dl_baselines_v8_multiseed.py --seeds 10` | `results_v8/gru_multiseed_v8.json` |
-| Table VII (single window) | `python eval_singlewindow_v9.py --seeds 10` | `results_v8/singlewindow_v9.json` |
-| Table VI (GRU grid search) | `python dl_baselines_v6_gridsearch.py` | stdout |
-| Table V (HuggingFace fidelity) | TODO scripts | TODO |
-| Table VIII (drift) | `server_drift.py`, `traffic_generator_drift_v11.py`, `python robustness_eval_drift_v2.py` | stdout |
-| Fig. 4 (sensitivity) | `python sensitivity_analysis.py` | `sensitivity_w_k.png` |
-| Table IX (insurance API) | `cd server_insurance && python eval_insurance_v8.py --seeds 10` | `results_v8/insurance_v8.json` |
-| Table X (response policy, d=0) | `python mit_eval_v8.py --seeds 10` | `results_v8/mitigation_v8.json` |
-| Table X (d=0,1,2) | `python mit_eval_v10_delay.py --seeds 10` | `results_v10/mitigation_v10_delay.json` |
-| Benign cost by client kind | `python mit_benign_by_kind_v8.py --seeds 10` | `results_v8/mit_benign_by_kind_v8.json` |
-| Sec. VI-D (latency) | `python latency_bench_v9.py` | `results_v8/latency_v9.json` |
-| Table XI (tenants) | `python make_tenant_log_v12.py --t 2 --out traffic_logs_v12_t2.csv`, then `python eval_tenant_v12.py --seeds 10 --csvs traffic_logs_v12_key.csv traffic_logs_v12_t2.csv ...`; trial-grouping rows: `python eval_tenant_v13.py ...` | `results_v8/tenant_*.json` |
-| Sec. VI-F (PRADA) | `python prada_baseline_v8.py --seeds 10`, `python prada_relaxed_v8.py --seeds 10` | `results_v8/prada_*.json` |
-| Sec. VI-G (cold start, running example) | `python cold_start_v13.py --seeds 5`, `python running_example_v13.py` | `results_v8/cold_start_v13.json` |
-| Sec. VI-B scope (S5/S9, leave-strategy-out) | `python eval_s9_v11.py --csv traffic_logs_v10b.csv --seeds 10 --holdout atk_s5,atk_s9`; `python eval_loso_v11.py --seeds 5`; `python s9_extraction_value_v11.py` | `results_v11/*.json` |
-| Sec. VI-A.2 (no server features, +0.11 s) | `python eval_noserver_v12.py --seeds 10` | `results_v8/noserver_v12.json` |
-| Sec. IV-B.2 (mutual information) | `python spp_information_gain.py` | stdout |
-| Request-level attack share | `python attack_share_v9.py` | stdout |
-| IP-level aggregation (reported as unusable) | `python eval_granularity_v7_3.py --csv traffic_logs_v7_2.csv --seeds 10` | `results_v8/granularity_v7_3.json` |
+| Table V (dataset statistics) / Sec. VI-A.1 (request-level attack share) | python attack_share_v9.py | stdout |
+| Fig. 3 (attack share over time) | python export_share_v12.py | stdout (JSON, 5-min bins) |
+| Table VI (HuggingFace fidelity) | <见下文第 5 节> | <见下文第 5 节> |
+| Table VII (GRU hyperparameters, grid search) | python dl_baselines_v6_gridsearch.py | stdout |
+| Table VIII (RF, XGBoost, L7-only, time-based) | python eval_unified_v8.py --seeds 10 | results_v8/unified_v8.json |
+| Table VIII (GRU) | python dl_baselines_v8_multiseed.py --seeds 10 | results_v8/gru_multiseed_v8.json |
+| Table VIII (single window) | python eval_singlewindow_v9.py --seeds 10 | results_v8/singlewindow_v9.json |
+| Table IX (concept drift, single partition) | server_drift.py + traffic_generator_drift_v11.py, then python robustness_eval_drift_v2.py | stdout |
+| Fig. 4 (sensitivity, single partition) | python sensitivity_analysis.py | sensitivity_w_k.png |
+| Table X (insurance API) | cd server_insurance && python eval_insurance_v8.py --seeds 10 | server_insurance/results_v8/insurance_v8.json |
+| Table XI (response policy, d=1) and Sec. VI-C (d=0,1,2) | python mit_eval_v10_delay.py --seeds 10 | results_v10/mitigation_v10_delay.json |
+| Sec. VI-C (d=0 reference, benign cost) | python mit_eval_v8.py --seeds 10 | results_v8/mitigation_v8.json |
+| Sec. VI-C (benign cost by client kind) | python mit_benign_by_kind_v8.py --seeds 10 | results_v8/mit_benign_by_kind_v8.json |
+| Sec. VI-D (latency) | python latency_bench_v9.py | results_v8/latency_v9.json |
+| Table XII (tenants, rows Key / t=5 / t=2 / t=1 / t=1 trials grouped) | python make_tenant_log_v12.py --t 0 --out traffic_logs_v12_key.csv (same with --t 5, --t 2, --t 1, and --t 1 --group_trials 20 --out traffic_logs_v12_t1_trial20.csv), then python eval_tenant_v12.py --seeds 10 --csvs traffic_logs_v12_key.csv traffic_logs_v12_t5.csv traffic_logs_v12_t2.csv traffic_logs_v12_t1.csv traffic_logs_v12_t1_trial20.csv | results_v8/tenant_v12.json |
+| Table XII (rows t=2 / t=5 trials grouped) | python make_tenant_log_v12.py --t 2 --group_trials 20 --out traffic_logs_v12_t2_trial20.csv (same with --t 5), then python eval_tenant_v13.py --seeds 10 --out tenant_trial20.json --csvs traffic_logs_v12_t2_trial20.csv traffic_logs_v12_t5_trial20.csv | results_v8/tenant_trial20.json |
+| Sec. VI-F (PRADA) | python prada_baseline_v8.py --seeds 10; python prada_relaxed_v8.py --seeds 10 | results_v8/prada_*.json |
+| Sec. VI-G, Table XIII (cold start, running example) | python cold_start_v13.py --seeds 5; python running_example_v13.py | results_v8/cold_start_v13.json; stdout |
+| Sec. VI-B scope, S5/S9 held out | python eval_s9_v11.py --csv traffic_logs_v10b.csv --seeds 10 --holdout atk_s5,atk_s9 --out s9_zeroday.json | results_v11/s9_zeroday.json |
+| Sec. VI-B scope, S9 in training (upper bound) | python eval_s9_v11.py --csv traffic_logs_v10b.csv --seeds 10 --holdout atk_s5 --out s9_trained.json | results_v11/s9_trained.json |
+| Sec. VI-B scope, leave-strategy-out | python eval_loso_v11.py --seeds 5 | results_v11/loso_v11.json |
+| Sec. VI-B scope, surrogate error under S1/S5/S9 | python s9_extraction_value_v11.py | results_v11/s9_extraction_value.json |
+| Sec. VI-A.2 (no server features, +0.11 s) | python eval_noserver_v12.py --seeds 10 | results_v8/noserver_v12.json |
+| Sec. IV-B.2 (mutual information) | python spp_information_gain.py | stdout |
+| Sec. VI-E (IP-level aggregation, reported as unusable) | python eval_granularity_v7_3.py --csv traffic_logs_v7_2.csv --seeds 10 | results_v8/granularity_v7_3.json |
 
 Approximate run times on the authors' workstation: `eval_unified_v8` about 1 h, GRU about 30 min, single-window about 20 min, PRADA about 15 min each, `eval_s9_v11` about 3 h per setting, `eval_loso_v11` about 1 h.
 
