@@ -10,7 +10,7 @@ Code for the first-round submission is kept at `AI-Model-Theft-Detection-v1`.
 - **Simulators**: `server_*.py` (API gateway with logging middleware) and `traffic_generator_*.py` (benign clients and attack strategies S0-S6, S9).
 - **Feature pipeline**: `spp_experiments_v5*.py` (50-D window features, Spatial Pyramid Pooling), `window_relabel_credit_only.py` (credit-only window labels), `common_v8.py` (hashed keys, stratified entity-disjoint split, 1% normal-FPR calibration).
 - **Evaluation scripts**: one script per table or section (map below).
-- **HuggingFace Validation**: `hf_common.py`, `hf_sim_reference.py`, `hf_collect_traces.py`, and `hf_fidelity_analysis.py` (scripts for collecting live HuggingFace text-classification traces and reproducing Table VI fidelity analysis[cite: 1, 10]).
+- **HuggingFace validation**: `hf_common.py`, `hf_sim_reference.py`, `hf_collect_traces.py` and `hf_fidelity_analysis.py` (collect live HuggingFace text-classification traces and compute the Table VI fidelity statistics). The raw traces used in the paper are in `data/hf_traces_run2/`.
 - **Results**: `results_v8/`, `results_v10/`, `results_v11/` (JSON, mean/std over partitions).
 
 ## Setup
@@ -43,13 +43,15 @@ The larger logs are attached to the Releases page as `logs.zip`. Download it and
 
 Regenerating a log: start the matching `server_*.py` in one terminal and the matching `traffic_generator_*.py` in another, run about 2 hours, stop with Ctrl+C. New logs give slightly different numbers.
 
+HuggingFace traces (Table VI). The live traces behind Table VI are in `data/hf_traces_run2/` (`hf_steady.csv`, `hf_burst.csv`, `hf_meta.json`). A first collection (`data/hf_traces/`) is kept for transparency: the endpoint was cold, mean steady latency was 4.3 s instead of 0.3 s, and the steady-IAT KS_boot and Cohen's d were higher, so the collection was repeated. The decision thresholds (KS_boot < 0.25, d < 0.50) were fixed before the second collection. Results for both runs: `results_v8/hf_fidelity.json` (run 2, used in the paper) and `results_v8/hf_fidelity_run1.json`. The token is read only from the environment variable `HF_TOKEN` and is never written to disk. Live latency varies between runs, so new collections give slightly different numbers; the archived traces are the reference.
+
 ## Paper item to command
 
 | Paper item | Command | Output |
 |---|---|---|
 | Table V (dataset statistics) / Sec. VI-A.1 (request-level attack share) | python attack_share_v9.py | stdout |
 | Fig. 3 (attack share over time) | python export_share_v12.py | stdout (JSON, 5-min bins) |
-| Table VI (HuggingFace fidelity)[cite: 1, 10] | `set HF_TOKEN=<your_token>` (cmd), then `python hf_collect_traces.py --steady_mean 4.33` and `python hf_fidelity_analysis.py --iat_scope all` | stdout (prints KS_boot, Cohen's d, OVL metrics & LaTeX rows) and saves `results_v8/hf_fidelity.json`[cite: 1, 10] |
+| Table VI (HuggingFace fidelity) | From the archived traces (no token needed): `python hf_fidelity_analysis.py --trace_dir data/hf_traces_run2 --iat_scope all`. To collect new traces: `set HF_TOKEN=<your_token>` (cmd; Linux/macOS: `export HF_TOKEN=...`), then `python hf_collect_traces.py --steady_mean 4.33 --out_dir data/hf_traces_new` | stdout (KS_boot, null KS, Cohen's d, OVL, LaTeX rows) and `results_v8/hf_fidelity.json` |
 | Table VII (GRU hyperparameters, grid search) | python dl_baselines_v6_gridsearch.py | stdout |
 | Table VIII (RF, XGBoost, L7-only, time-based) | python eval_unified_v8.py --seeds 10 | results_v8/unified_v8.json |
 | Table VIII (GRU) | python dl_baselines_v8_multiseed.py --seeds 10 | results_v8/gru_multiseed_v8.json |
@@ -73,7 +75,7 @@ Regenerating a log: start the matching `server_*.py` in one terminal and the mat
 | Sec. IV-B.2 (mutual information) | python spp_information_gain.py | stdout |
 | Sec. VI-E (IP-level aggregation, reported as unusable) | python eval_granularity_v7_3.py --csv traffic_logs_v7_2.csv --seeds 10 | results_v8/granularity_v7_3.json |
 
-Approximate run times on the authors' workstation: `eval_unified_v8` about 1 h, GRU about 30 min, single-window about 20 min, PRADA about 15 min each, `eval_s9_v11` about 3 h per setting, `eval_loso_v11` about 1 h.
+Approximate run times on the authors' workstation: `eval_unified_v8` about 1 h, GRU about 30 min, single-window about 20 min, PRADA about 15 min each, `eval_s9_v11` about 3 h per setting, `eval_loso_v11` about 1 h; HuggingFace collection about 9 min (100 steady + 60 burst requests), `hf_fidelity_analysis.py` under 1 min.
 
 ## Scope and limitations
 All traffic is simulated. S1 detection depends on parameter-traversal features that exploit the regular query grid of the simulated attackers; queries drawn from the benign distribution (S5) or from a jittered grid (S9) are essentially not detected. See Sec. VI-B and VII of the paper.
